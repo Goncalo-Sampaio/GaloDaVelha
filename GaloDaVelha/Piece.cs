@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace GaloDaVelha
 {
+    /// <summary>
+    /// This is the Piece's class
+    /// </summary>
     public class Piece
     {
         // defining Piece's variables
