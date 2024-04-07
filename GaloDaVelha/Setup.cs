@@ -32,6 +32,9 @@ namespace GaloDaVelha
 
             Console.WriteLine($"\nPlayer: {player1} and {player2}");
 
+            Instructions();
+
+
             // Creating new Board
             board = new Board();
 
@@ -63,8 +66,30 @@ namespace GaloDaVelha
             Piece cbtp = new Piece("cbtp", "\u25CB-", false, false, true, false); // ○
             Piece cbsh = new Piece("cbsh", "\u25BD\u25E6", false, false, false, true); // ▽◦
             Piece cbsp = new Piece("cbsp", "\u25BD-", false, false, false, false); // ▽
-            return pieces = new Piece[16] {swth, swtp, swsh, swsp, sbth, sbtp, 
+            return pieces = new Piece[16] {swth, swtp, swsh, swsp, sbth, sbtp,
             sbsh, sbsp, cwth, cwtp, cwsh, cwsp, cbth, cbtp, cbsh, cbsp};
+        }
+
+        /// <summary>
+        /// Method to show the instructions to the players
+        /// </summary>
+        private void Instructions()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Instructions:");
+            Console.WriteLine();
+            Console.WriteLine("Each player will pick the piece for the opponent.");
+            Console.Write("Then the opponent must place the piece on one of");
+            Console.WriteLine(" the available spaces.");
+            Console.Write("The goal is to be the player that places a piece");
+            Console.Write(" in a way that it forms a line of 4 pieces with 1");
+            Console.WriteLine(" characteristic in common.");
+            Console.WriteLine();
+            Console.WriteLine("The names of the pieces indicate its characteristics:");
+            Console.WriteLine("First letter: s for square and c for circle");
+            Console.WriteLine("Second letter: w for white and b for black");
+            Console.WriteLine("Third letter: t for tall and s for short");
+            Console.WriteLine("Fourth letter: h for hole and p for plain");
         }
     }
 }
