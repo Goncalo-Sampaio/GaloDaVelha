@@ -104,6 +104,43 @@ namespace GaloDaVelha
 
                     Console.WriteLine($"{x.GetName()} = {x.GetSymbol()}");
                 }
+
+                string userInput;
+                bool validInput = false;
+
+                while (true)
+                {
+                    Console.Write("\nPiece: ");
+                    userInput = Console.ReadLine();
+
+                    //checks if the user input is valid
+                    for (int i = 0; i < availablePieces.Length; i++)
+                    {
+                        if (availablePieces[i] == null)
+                        {
+                            continue;
+                        }
+
+                        if (availablePieces[i].GetName() == userInput)
+                        {
+                            pickedPiece = availablePieces[i];
+                            availablePieces[i] = null;
+                            validInput = true;
+                            break;
+                        }
+                    }
+
+                    if (validInput)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.Write("\nThat piece does not exist");
+                        Console.WriteLine(" or was already played.");
+                        Console.WriteLine("Please insert another one.");
+                    }
+                }
             }
         }
     }
