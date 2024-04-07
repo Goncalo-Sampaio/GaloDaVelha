@@ -7,6 +7,8 @@ namespace GaloDaVelha
 {
     public class Game
     {
-        
+        public void Start(){
+            Console.WriteLine("Game Started!");
+        }
     }
 }
