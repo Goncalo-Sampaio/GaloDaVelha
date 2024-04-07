@@ -13,7 +13,9 @@ namespace GaloDaVelha
         private Piece[] availablePieces;
         private Piece pickedPiece;
         private Piece[,] board;
-        private bool gameEnded = false;
+        private bool gameWon = false;
+        private bool draw = false;
+        private int turnCounter = 1;
         private string player1;
         private string player2;
         private bool player1Turn = true;
@@ -22,20 +24,42 @@ namespace GaloDaVelha
         private ConditionsChecker checker = new ConditionsChecker();
 
 
-        public void Start(){
+        public void Start()
+        {
             //Instantiates a new Setup and gets the necessary variables
             Setup setup = new Setup();
             (availablePieces, board, player1, player2) = setup.GameSetup();
 
             //Main game loop that keeps going as long as there isn't a winner or
             //a draw
-            while (!gameEnded)
+            while (turnCounter < 17)
             {
                 GameTurn();
                 GameState();
-                gameEnded = checker.CheckWin(board, row, column);
+                gameWon = checker.CheckWin(board, row, column);
+                if (gameWon)
+                {
+                    break;
+                }
+                player1Turn = !player1Turn;
+                turnCounter++;
             }
-            Console.WriteLine("Game Over!");
+
+            if (gameWon)
+            {
+                if (player1Turn)
+                {
+                    Console.WriteLine($"{player1} won!");
+                }
+                else
+                {
+                    Console.WriteLine($"{player2} won!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Game Over! It was a draw!");
+            }
         }
 
         /// <summary>
@@ -151,7 +175,7 @@ namespace GaloDaVelha
                     Console.WriteLine(" place the piece?");
                     Console.Write("Please insert a number between 1 and 4: ");
                     row = int.Parse(Console.ReadLine()) - 1;
-                    Console.Write($"{player1}, in which column do you want to"); 
+                    Console.Write($"{player1}, in which column do you want to");
                     Console.WriteLine(" place the piece?");
                     Console.Write("Please insert a number between 1 and 4: ");
                     column = int.Parse(Console.ReadLine()) - 1;
@@ -196,7 +220,7 @@ namespace GaloDaVelha
                     Console.Write("\nPiece: ");
                     userInput = Console.ReadLine();
 
-                    
+
 
                     //checks if the user input is valid
                     for (int i = 0; i < availablePieces.Length; i++)
@@ -236,11 +260,11 @@ namespace GaloDaVelha
                     Console.WriteLine(" place the piece?");
                     Console.Write("Please insert a number between 1 and 4: ");
                     row = int.Parse(Console.ReadLine()) - 1;
-                    Console.Write($"{player2}, in which column do you want to"); 
+                    Console.Write($"{player2}, in which column do you want to");
                     Console.WriteLine(" place the piece?");
                     Console.Write("Please insert a number between 1 and 4: ");
                     column = int.Parse(Console.ReadLine()) - 1;
-                    
+
                     if (row > 3 || row < 0 || column > 3 || column < 0)
                     {
                         Console.WriteLine("\n - Not a valid position! - \n");
