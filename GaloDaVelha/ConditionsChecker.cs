@@ -11,7 +11,7 @@ namespace GaloDaVelha
     /// </summary>
     public class ConditionsChecker
     {
-        public bool CheckWin()
+        public bool CheckWin(Piece[,] board, int row, int column)
         {
             //which characteristic are we checking:
             //0 for shape, 1 for color, 2 for size and 3 for hole
