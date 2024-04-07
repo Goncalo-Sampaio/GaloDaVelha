@@ -15,14 +15,14 @@ namespace GaloDaVelha
         private Board board;
 
         /// <summary>
-        /// This method creates a new game
+        /// This method creates the initial conditions for the game
         /// </summary>
         /// <returns>
         /// All the possible Pieces, the Board and the Players
         /// </returns>
         public (Piece[], Piece[,], string, string) GameSetup()
         {
-            Console.WriteLine("HEllo! You are playing Galo da Velha.");
+            Console.WriteLine("Hello! You are playing Galo da Velha.");
             // Asking player 1 name
             Console.Write("What is Player 1's name? ");
             string player1 = Console.ReadLine();
@@ -35,7 +35,36 @@ namespace GaloDaVelha
             // Creating new Board
             board = new Board();
 
-            return (pieces, board.GetBoard(), player1, player2);
+            return (CreatePieces(), board.GetBoard(), player1, player2);
+        }
+
+        /// <summary>
+        /// This method creates all the possible pieces with their specific
+        /// characteristics
+        /// </summary>
+        /// <returns>
+        /// An array with all the 16 Pieces
+        /// </returns>
+        private Piece[] CreatePieces()
+        {
+            Piece swth = new Piece("swth", "\u25A0\u25E6", true, true, true, true); // ■◦
+            Piece swtp = new Piece("swtp", "\u25A0-", true, true, true, false); // ■
+            Piece swsh = new Piece("swsh", "\u25C6\u25E6", true, true, false, true); // ◆◦
+            Piece swsp = new Piece("swsp", "\u25C6-", true, true, false, false); // ◆
+            Piece sbth = new Piece("sbth", "\u25A1\u25E6", true, false, true, true); // □◦
+            Piece sbtp = new Piece("sbtp", "\u25A1-", true, false, true, false); // □
+            Piece sbsh = new Piece("sbsh", "\u25C7\u25E6", true, false, false, true); // ◇◦
+            Piece sbsp = new Piece("sbsp", "\u25C7-", true, false, false, false); // ◇
+            Piece cwth = new Piece("cwth", "\u25CF\u25E6", false, true, true, true); // ●◦
+            Piece cwtp = new Piece("cwtp", "\u25CF-", false, true, true, false); // ●
+            Piece cwsh = new Piece("cwsh", "\u25BC\u25E6", false, true, false, true); // ▼◦
+            Piece cwsp = new Piece("cwsp", "\u25BC-", false, true, false, false); // ▼
+            Piece cbth = new Piece("cbth", "\u25CB\u25E6", false, false, true, true); // ○◦
+            Piece cbtp = new Piece("cbtp", "\u25CB-", false, false, true, false); // ○
+            Piece cbsh = new Piece("cbsh", "\u25BD\u25E6", false, false, false, true); // ▽◦
+            Piece cbsp = new Piece("cbsp", "\u25BD-", false, false, false, false); // ▽
+            return pieces = new Piece[16] {swth, swtp, swsh, swsp, sbth, sbtp, 
+            sbsh, sbsp, cwth, cwtp, cwsh, cwsp, cbth, cbtp, cbsh, cbsp};
         }
     }
 }
