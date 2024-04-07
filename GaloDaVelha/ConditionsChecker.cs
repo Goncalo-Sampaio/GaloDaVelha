@@ -11,7 +11,7 @@ namespace GaloDaVelha
     /// </summary>
     public class ConditionsChecker
     {
-        public void CheckWin()
+        public bool CheckWin()
         {
             //which characteristic are we checking:
             //0 for shape, 1 for color, 2 for size and 3 for hole
@@ -173,10 +173,11 @@ namespace GaloDaVelha
                     //diagonal
                     n++;
                 }
-                
+
                 //increases the counter for which characteristic are we checking
                 checkingCharacteristic++;
             }
+            return false;
         }
     }
 }
