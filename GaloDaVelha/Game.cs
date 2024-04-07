@@ -141,6 +141,36 @@ namespace GaloDaVelha
                         Console.WriteLine("Please insert another one.");
                     }
                 }
+
+                bool validSpace = false;
+
+                while (!validSpace)
+                {
+                    GameState();
+                    Console.Write($"\n{player1}, in which row do you want to");
+                    Console.WriteLine(" place the piece?");
+                    Console.Write("Please insert a number between 1 and 4: ");
+                    row = int.Parse(Console.ReadLine()) - 1;
+                    Console.Write($"{player1}, in which column do you want to"); 
+                    Console.WriteLine(" place the piece?");
+                    Console.Write("Please insert a number between 1 and 4: ");
+                    column = int.Parse(Console.ReadLine()) - 1;
+
+                    if (row > 3 || row < 0 || column > 3 || column < 0)
+                    {
+                        Console.WriteLine("\n - Not a valid position! - \n");
+                        continue;
+                    }
+                    if (board[row, column] == null)
+                    {
+                        board[row, column] = pickedPiece;
+                        validSpace = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n - Not a valid position! - \n");
+                    }
+                }
             }
         }
     }
