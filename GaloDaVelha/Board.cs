@@ -32,5 +32,27 @@ namespace GaloDaVelha
         {
             return board;
         }
+        
+        /// <summary>
+        /// This method gets all the possible Pieces
+        /// </summary>
+        /// <returns>
+        /// The 
+        /// </returns>
+        public Piece[] GetPieces()
+        {
+            return pieces;
+        }
+
+        /// <summary>
+        /// This method sets all the possible Pieces in the Board
+        /// </summary>
+        /// <param name="pieces">
+        /// This is all the possible Pieces
+        /// </param>
+        public void SetPieces(Piece[] pieces)
+        {
+            this.pieces = pieces;
+        }
     }
 }

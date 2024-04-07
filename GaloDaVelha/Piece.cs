@@ -10,7 +10,7 @@ namespace GaloDaVelha
     /// </summary>
     public class Piece
     {
-        // defining Piece's variables
+        // Defining Piece's variables
         private string name;
         private string symbol;
         private bool[] characteristics = new bool[4];
