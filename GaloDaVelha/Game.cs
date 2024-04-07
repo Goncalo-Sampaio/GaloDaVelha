@@ -172,6 +172,91 @@ namespace GaloDaVelha
                     }
                 }
             }
+            else //if player 2 turn
+            {
+                Console.WriteLine("--------------------//--------------------");
+                Console.WriteLine($"\nIt's {player2}'s turn!");
+                Console.WriteLine($"{player1}, please pick a piece to be played.");
+
+                foreach (Piece x in availablePieces)
+                {
+                    if (x == null)
+                    {
+                        continue;
+                    }
+
+                    Console.WriteLine(x.GetName());
+                }
+
+                string userInput;
+                bool validInput = false;
+
+                while (true)
+                {
+                    Console.Write("\nPiece: ");
+                    userInput = Console.ReadLine();
+
+                    
+
+                    //checks if the user input is valid
+                    for (int i = 0; i < availablePieces.Length; i++)
+                    {
+                        if (availablePieces[i] == null)
+                        {
+                            continue;
+                        }
+
+                        if (availablePieces[i].GetName() == userInput)
+                        {
+                            pickedPiece = availablePieces[i];
+                            availablePieces[i] = null;
+                            validInput = true;
+                            break;
+                        }
+                    }
+
+                    if (validInput)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.Write("\nThat piece does not exist");
+                        Console.WriteLine("or was already played.");
+                        Console.WriteLine("Please insert another one.");
+                    }
+                }
+
+                bool validSpace = false;
+
+                while (!validSpace)
+                {
+                    GameState();
+                    Console.Write($"\n{player2}, in which row do you want to");
+                    Console.WriteLine(" place the piece?");
+                    Console.Write("Please insert a number between 1 and 4: ");
+                    row = int.Parse(Console.ReadLine()) - 1;
+                    Console.Write($"{player2}, in which column do you want to"); 
+                    Console.WriteLine(" place the piece?");
+                    Console.Write("Please insert a number between 1 and 4: ");
+                    column = int.Parse(Console.ReadLine()) - 1;
+                    
+                    if (row > 3 || row < 0 || column > 3 || column < 0)
+                    {
+                        Console.WriteLine("\n - Not a valid position! - \n");
+                        continue;
+                    }
+                    if (board[row, column] == null)
+                    {
+                        board[row, column] = pickedPiece;
+                        validSpace = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n - Not a valid position - \n");
+                    }
+                }
+            }
         }
     }
 }
