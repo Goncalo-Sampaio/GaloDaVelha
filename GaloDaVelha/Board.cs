@@ -10,9 +10,8 @@ namespace GaloDaVelha
     /// </summary>
     public class Board
     {
-        // Defining Piece's variables
+        // Defining Board's variables
         private Piece[,] board;
-        private Piece[] pieces;
 
         /// <summary>
         /// This is the Board's constructor
@@ -31,28 +30,6 @@ namespace GaloDaVelha
         public Piece[,] GetBoard()
         {
             return board;
-        }
-        
-        /// <summary>
-        /// This method gets all the possible Pieces
-        /// </summary>
-        /// <returns>
-        /// The 
-        /// </returns>
-        public Piece[] GetPieces()
-        {
-            return pieces;
-        }
-
-        /// <summary>
-        /// This method sets all the possible Pieces in the Board
-        /// </summary>
-        /// <param name="pieces">
-        /// This is all the possible Pieces
-        /// </param>
-        public void SetPieces(Piece[] pieces)
-        {
-            this.pieces = pieces;
         }
     }
 }
