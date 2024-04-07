@@ -53,5 +53,27 @@ namespace GaloDaVelha
         {
             return name;
         }
+
+        /// <summary>
+        /// This is a method to get the Piece's symbol/s
+        /// </summary>
+        /// <returns>
+        /// The Piece's symbol/s
+        /// </returns>
+        public string GetSymbol()
+        {
+            return symbol;
+        }
+
+        /// <summary>
+        /// This is a method to get the Piece's characteristics
+        /// </summary>
+        /// <returns>
+        /// The Piece's characteristics
+        /// </returns>
+        public bool[] GetCharacteristics()
+        {
+            return characteristics;
+        }
     }
 }
