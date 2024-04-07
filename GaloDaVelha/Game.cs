@@ -10,11 +10,11 @@ namespace GaloDaVelha
     /// </summary>
     public class Game
     {
+        //Creating all the necessary variables for the game
         private Piece[] availablePieces;
         private Piece pickedPiece;
         private Piece[,] board;
         private bool gameWon = false;
-        private bool draw = false;
         private int turnCounter = 1;
         private string player1;
         private string player2;
@@ -23,7 +23,9 @@ namespace GaloDaVelha
         private int column;
         private ConditionsChecker checker = new ConditionsChecker();
 
-
+        /// <summary>
+        /// Method to start the game and to run the main game loop
+        /// </summary>
         public void Start()
         {
             //Instantiates a new Setup and gets the necessary variables
@@ -34,17 +36,27 @@ namespace GaloDaVelha
             //a draw
             while (turnCounter < 17)
             {
+                //Calling the necessary methods
                 GameTurn();
                 GameState();
                 gameWon = checker.CheckWin(board, row, column);
+
+                //if one of the players made a winning move, the loop breaks and
+                //the game ends
                 if (gameWon)
                 {
                     break;
                 }
+
+                //switching the turns
                 player1Turn = !player1Turn;
+
+                //counting the turns to end the game on a draw if it reaches max
+                //turns
                 turnCounter++;
             }
 
+            //Showing the players the outcome of the game
             if (gameWon)
             {
                 if (player1Turn)
@@ -64,6 +76,8 @@ namespace GaloDaVelha
 
         /// <summary>
         /// Shows the current game state to the user
+        /// Iterates through all the rows and columns to show if there are
+        /// pieces placed and where they are
         /// </summary>
         private void GameState()
         {
@@ -109,8 +123,12 @@ namespace GaloDaVelha
             Console.WriteLine("- = No Holes"); //-
         }
 
+        /// <summary>
+        /// Method to manage player turns and choices
+        /// </summary>
         private void GameTurn()
         {
+            //if its player 1's turn
             if (player1Turn)
             {
                 // Declaring player's turn
@@ -132,6 +150,8 @@ namespace GaloDaVelha
                 string userInput;
                 bool validInput = false;
 
+                //Loop to ask the player to choose a piece and check
+                //if its valid
                 while (true)
                 {
                     Console.Write("\nPiece: ");
@@ -147,6 +167,8 @@ namespace GaloDaVelha
 
                         if (availablePieces[i].GetName() == userInput)
                         {
+                            //if the picked piece is available, removes it from
+                            //the available pieces
                             pickedPiece = availablePieces[i];
                             availablePieces[i] = null;
                             validInput = true;
@@ -154,6 +176,7 @@ namespace GaloDaVelha
                         }
                     }
 
+                    //if its a valid piece, breaks the loop
                     if (validInput)
                     {
                         break;
@@ -168,8 +191,11 @@ namespace GaloDaVelha
 
                 bool validSpace = false;
 
+                //loop to ask the player where they want to place the piece and
+                //checking if its an available space
                 while (!validSpace)
                 {
+                    //Shows the game state to the user for easier placement
                     GameState();
                     Console.Write($"\n{player1}, in which row do you want to");
                     Console.WriteLine(" place the piece?");
@@ -180,11 +206,16 @@ namespace GaloDaVelha
                     Console.Write("Please insert a number between 1 and 4: ");
                     column = int.Parse(Console.ReadLine()) - 1;
 
+                    //if the player picked a position out of the board, they
+                    // have to pick another position
                     if (row > 3 || row < 0 || column > 3 || column < 0)
                     {
                         Console.WriteLine("\n - Not a valid position! - \n");
                         continue;
                     }
+
+                    //if the space is available, places the piece and stops the
+                    //loop
                     if (board[row, column] == null)
                     {
                         board[row, column] = pickedPiece;
@@ -196,7 +227,10 @@ namespace GaloDaVelha
                     }
                 }
             }
-            else //if player 2 turn
+            //if its player 2's turn
+            //does the same thing as previously explained on player 1's turn but
+            //the roles are reversed
+            else 
             {
                 Console.WriteLine("--------------------//--------------------");
                 Console.WriteLine($"\nIt's {player2}'s turn!");
