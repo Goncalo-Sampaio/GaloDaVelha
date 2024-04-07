@@ -66,7 +66,7 @@
 - Classe do tabuleiro:
   - Tem as variáveis do tabuleiro;
   - Tem o construtor que define os espaços do tabuleiro como um array multidimensional de 4 espaços;
-  - Tem Getters para cada uma das variáveis;
+  - Tem Getters para as variáveis;
 ---
 
 ### **Fluxograma:**
