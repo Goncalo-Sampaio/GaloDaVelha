@@ -90,6 +90,49 @@ namespace GaloDaVelha
                     }
                 }
 
+                //checks for a winning diagonals
+
+                //LEFT DIAGONAL
+                //resets similarityCounter to make a new check for diagonal
+                similarityCounter = 0;
+
+                //auxiliary int for diagonal checking
+                int n = 0;
+
+                while (n < 4)
+                {
+                    //checks if there still an empty space on that row
+                    if (board[n, n] == null)
+                    {
+                        break;
+                    }
+
+                    //gets the piece on the position [row, j]
+                    Piece piece = board[n, n];
+
+                    //checks if the characteristic of the piece is true and adds
+                    //1 or false and subtracts 1
+                    if (piece.GetCharacteristics()[checkingCharacteristic])
+                    {
+                        similarityCounter++;
+                    }
+                    else
+                    {
+                        similarityCounter--;
+                    }
+
+                    //if 4 of the pieces have the same characteristic,
+                    //returns true and player wins
+                    if (similarityCounter == 4 || similarityCounter == -4)
+                    {
+                        return true;
+                    }
+
+                    //increases the counter to check the next piece in the
+                    //diagonal
+                    n++;
+                }
+
                 //increases the counter for which characteristic are we checking
                 checkingCharacteristic++;
             }
