@@ -11,10 +11,12 @@ namespace GaloDaVelha
     public class Game
     {
         private Piece[] availablePieces;
+        private Piece pickedPiece;
         private Piece[,] board;
         private bool gameEnded = false;
         private string player1;
         private string player2;
+        private bool player1Turn = true;
         private int row;
         private int column;
         private ConditionsChecker checker = new ConditionsChecker();
@@ -29,13 +31,14 @@ namespace GaloDaVelha
             //a draw
             while (!gameEnded)
             {
+                GameTurn()
                 GameState();
                 gameEnded = checker.CheckWin(board, row, column);
             }
             Console.WriteLine("Game Over!");
         }
 
-                /// <summary>
+        /// <summary>
         /// Shows the current game state to the user
         /// </summary>
         private void GameState()
@@ -80,6 +83,28 @@ namespace GaloDaVelha
             Console.WriteLine("\u25BD = Small Circles"); // ▽
             Console.WriteLine("\u25E6 = Holes"); //◦
             Console.WriteLine("- = No Holes"); //-
+        }
+
+        private void GameTurn()
+        {
+            if (player1Turn)
+            {
+                // Declaring player's turn
+                Console.WriteLine("\n--------------------//--------------------");
+                Console.WriteLine($"\nIt's {player1}'s turn!");
+                Console.WriteLine($"{player2}, please pick a piece to be played.");
+                //show the players which Pieces are available
+                Console.WriteLine("\nThese are the pieces available:");
+                foreach (Piece x in availablePieces)
+                {
+                    if (x == null)
+                    {
+                        continue;
+                    }
+
+                    Console.WriteLine($"{x.GetName()} = {x.GetSymbol()}");
+                }
+            }
         }
     }
 }
