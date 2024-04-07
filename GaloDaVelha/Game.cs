@@ -31,7 +31,7 @@ namespace GaloDaVelha
             //a draw
             while (!gameEnded)
             {
-                GameTurn()
+                GameTurn();
                 GameState();
                 gameEnded = checker.CheckWin(board, row, column);
             }
