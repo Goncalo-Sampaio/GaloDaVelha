@@ -13,7 +13,7 @@
  - Classe que faz a gestão do jogo e dos turnos.
  - Readme
   
-**PJoão Nogueira:**
+**João Nogueira:**
  - Classe das Peças do jogo
  - Classe do tabuleiro
  - Classe que gere o setup inicial do jogo e que cria as peças necessárias
@@ -35,7 +35,7 @@
     - Mostra o estado do jogo;
     - Gere os turnos e escolhas dos jogadores;
     - Recebe uma variável que diz se o jogador ganhou o jogo;
-      - O jogo acaba caso o jogador tenha ganho;
+      - O jogo acaba caso o jogador ganhe;
     - Loop acaba passados 16 turnos;
   - Mostra uma mensagem de fim de jogo dependendo do resultado:
     - Jogador 1 vence;
@@ -71,6 +71,28 @@
 
 ### **Fluxograma:**
 
+```mermaid
+    flowchart TD;
+        A((Start))-->B(Ask Players Names)
+     B-->C(Show Available Pieces)
+     C-->D(Setup Game)
+     D-->E(Ask Opponent to chose a Piece)
+     E-->G{Pick Available Piece}
+     G-- no -->E
+     G-- yes -->H(Ask Player to chose a Place to put the Piece)
+     H-->I{Pick Available and Existing Place}
+     I-- no -->H
+     I-- yes -->J(Put the )
+     J{There is a sequenced row, a column or diagonal}
+     J-- yes -->Y(Player Wins the game)
+     J-- no -->K{There are more Pieces}
+     K-- yes -->L(Switch roles)
+     K-- no -->M(Draw)
+     M-->Z
+     L-->E
+    Y-->Z(End)
+
+```
 ### **Referências:**
  - [C# Microsoft](https://learn.microsoft.com/pt-pt/dotnet/csharp/)
  - [Stack Overflow](https://stackoverflow.com/)
